@@ -1,0 +1,55 @@
+
+:root{
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color:#111827; background:#f5f7fb;
+}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(180deg,#eef2ff 0,#f8fafc 45%,#fff 100%)}
+button,input{font:inherit}
+button{cursor:pointer}
+.app{max-width:760px;margin:0 auto;padding:24px 18px 60px}
+.hero{display:flex;gap:18px;align-items:center;padding:24px 4px 14px}
+.logo{font-size:44px;width:72px;height:72px;display:grid;place-items:center;background:#fff;border-radius:22px;box-shadow:0 12px 30px rgba(15,23,42,.08)}
+h1{margin:2px 0 6px;font-size:clamp(30px,6vw,44px)}
+h2,h3,p{margin-top:0}
+.subtitle,.muted{color:#667085}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;color:#4f46e5;margin-bottom:6px}
+.panel{background:#fff;border:1px solid #e5e7eb;border-radius:24px;padding:22px;box-shadow:0 12px 30px rgba(15,23,42,.06);margin-top:16px}
+.banner{padding:14px 16px;border-radius:16px;background:#fff7ed;border:1px solid #fed7aa;margin:10px 0 16px;display:grid;gap:4px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.stats article{background:#111827;color:white;border-radius:20px;padding:18px;text-align:center}
+.stats span{display:block;font-size:28px;font-weight:800}
+.stats small{opacity:.7}
+.panel-top{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}
+.badge{font-size:12px;padding:7px 10px;border-radius:999px;background:#eef2ff;color:#4338ca;font-weight:700;white-space:nowrap}
+.primary,.secondary{border:0;border-radius:14px;padding:13px 18px;font-weight:800}
+.primary{background:#111827;color:white}
+.secondary{background:#eef2ff;color:#3730a3}
+.big-btn{width:100%;padding:16px;font-size:16px}
+.wide{width:100%;margin-top:12px}
+.features .chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{padding:8px 10px;border-radius:999px;background:#f3f4f6;font-size:13px}
+.auth input{width:100%;padding:13px;border:1px solid #d0d5dd;border-radius:12px;margin-bottom:10px}
+.auth-buttons{display:flex;gap:8px;flex-wrap:wrap}
+.auth-msg{margin:10px 0 0;color:#b42318;font-size:13px}
+.study-top{display:flex;align-items:center;justify-content:space-between;padding:10px 2px 16px}
+.icon-btn{border:0;background:#fff;width:42px;height:42px;border-radius:50%;font-size:20px}
+.flashcard{background:white;border:1px solid #e5e7eb;border-radius:28px;padding:28px;box-shadow:0 18px 50px rgba(15,23,42,.08)}
+.word-line{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:110px}
+.word-line h2{font-size:clamp(36px,8vw,56px);margin:0}
+.speak{border:0;background:#eef2ff;width:48px;height:48px;border-radius:50%;font-size:21px}
+.example-box{background:#f8fafc;border-radius:16px;padding:16px;margin:16px 0}
+.example-box p:last-child{margin-bottom:0}
+.ratings{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+.ratings button{border:1px solid #e5e7eb;background:#fff;border-radius:16px;padding:12px 6px;font-size:22px}
+.ratings small{display:block;font-size:11px;margin-top:5px;color:#667085}
+.done{text-align:center;background:#fff;border-radius:28px;padding:40px 24px}
+.done .big{font-size:56px;margin-bottom:8px}
+@media (max-width:520px){
+  .app{padding:16px 12px 40px}
+  .hero{align-items:flex-start}
+  .logo{width:58px;height:58px;font-size:34px;border-radius:18px}
+  .stats article{padding:14px 8px}
+  .stats span{font-size:24px}
+  .ratings{grid-template-columns:repeat(2,1fr)}
+}

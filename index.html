@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111827">
+  <title>3 Words a Day</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <section id="home">
+      <header class="hero">
+        <div class="logo">🇬🇧</div>
+        <div>
+          <p class="eyebrow">MY ENGLISH</p>
+          <h1>3 Words a Day</h1>
+          <p class="subtitle">Trois mots par jour, des révisions intelligentes, une vraie progression.</p>
+        </div>
+      </header>
+
+      <div id="configBanner" class="banner" hidden>
+        <strong>Version locale active.</strong>
+        <span>Elle fonctionne déjà sur un appareil. La synchronisation sera activée dès que Supabase sera configuré.</span>
+      </div>
+
+      <section id="authPanel" class="panel auth" hidden>
+        <h2>Connexion</h2>
+        <p>Connecte-toi pour retrouver ta progression sur ton téléphone et ton ordinateur.</p>
+        <input id="email" type="email" placeholder="E-mail">
+        <input id="password" type="password" placeholder="Mot de passe">
+        <div class="auth-buttons">
+          <button id="signinBtn" class="primary">Se connecter</button>
+          <button id="signupBtn" class="secondary">Créer mon compte</button>
+        </div>
+        <p id="authMsg" class="auth-msg"></p>
+      </section>
+
+      <div class="stats">
+        <article><span id="newCount">0</span><small>nouveaux</small></article>
+        <article><span id="reviewCount">0</span><small>à retravailler</small></article>
+        <article><span id="learnedCount">0</span><small>maîtrisés</small></article>
+      </div>
+
+      <section class="panel today">
+        <div class="panel-top">
+          <div>
+            <p class="eyebrow">AUJOURD’HUI</p>
+            <h2>Ta séance d’anglais</h2>
+          </div>
+          <span id="modeBadge" class="badge">Mode local</span>
+        </div>
+        <p id="syncHint" class="muted"></p>
+        <button id="startBtn" class="primary big-btn">Commencer ma séance</button>
+      </section>
+
+      <section class="panel features">
+        <h3>Dans cette version</h3>
+        <div class="chips">
+          <span>3 mots/jour</span><span>🔊 Prononciation</span><span>Exemples</span>
+          <span>Révisions espacées</span><span>Mots déjà connus</span><span>Progression</span>
+        </div>
+      </section>
+    </section>
+
+    <section id="study" hidden>
+      <div class="study-top">
+        <button onclick="location.reload()" class="icon-btn">←</button>
+        <span id="cardCounter"></span>
+      </div>
+      <article class="flashcard">
+        <p id="cardCategory" class="eyebrow"></p>
+        <div class="word-line">
+          <h2 id="word"></h2>
+          <button id="speakBtn" class="speak">🔊</button>
+        </div>
+
+        <button id="revealBtn" class="primary big-btn">Voir la réponse</button>
+
+        <div id="answer" hidden>
+          <h3 id="translation"></h3>
+          <div class="example-box">
+            <p id="example"></p>
+            <p id="exampleFr" class="muted"></p>
+          </div>
+        </div>
+
+        <button id="knownBtn" class="secondary wide" hidden>Je connais déjà ✅</button>
+
+        <div id="ratingRow" class="ratings" hidden>
+          <button id="againBtn">😵<small>À revoir</small></button>
+          <button id="hardBtn">🤔<small>Difficile</small></button>
+          <button id="goodBtn">😊<small>Je sais</small></button>
+          <button id="easyBtn">🚀<small>Facile</small></button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
