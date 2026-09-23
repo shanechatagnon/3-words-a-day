@@ -1,105 +1,139 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#111827">
-  <title>3 Words a Day</title>
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a1b33">
+<title>3 Words a Day</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="app">
-    <section id="home">
-      <header class="hero">
-        <div class="logo">🇬🇧</div>
-        <div>
-          <p class="eyebrow">MY ENGLISH</p>
-          <h1>3 Words a Day</h1>
-          <p class="subtitle">Trois mots par jour, des révisions intelligentes, une vraie progression.</p>
-        </div>
-      </header>
+<svg aria-hidden="true" width="0" height="0" style="position:absolute">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10.5V20h13v-9.5"/><path d="M9.5 20v-5h5v5"/></symbol>
+  <symbol id="i-learn" viewBox="0 0 24 24"><path d="M4 5.5h10a3 3 0 0 1 3 3V20H7a3 3 0 0 1-3-3z"/><path d="M17 8.5h1a2 2 0 0 1 2 2V20h-3"/><path d="M8 9h5M8 13h5"/></symbol>
+  <symbol id="i-collection" viewBox="0 0 24 24"><rect x="4" y="4" width="14" height="14" rx="2"/><path d="M8 20h10a2 2 0 0 0 2-2V8"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7z"/><path d="m18 14 .8 2.2L21 17l-2.2.8L18 20l-.8-2.2L15 17l2.2-.8z"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5"/><path d="M19 12a7 7 0 1 0-2 5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4 10-10"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-volume" viewBox="0 0 24 24"><path d="M4 10v4h4l5 4V6l-5 4z"/><path d="M16 9a4 4 0 0 1 0 6"/><path d="M18 6a8 8 0 0 1 0 12"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 5.8a5.5 5.5 0 0 0-7.8 0L12 6.8l-1-1a5.5 5.5 0 1 0-7.8 7.8L12 22l8.8-8.4a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="M22 2 9 15"/><path d="m22 2-7 20-4-9-9-4z"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M9 7V5h6v2"/><path d="M3 12h18"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 18v-8M21 18v-5H8v5"/><path d="M3 13h5V8H4a1 1 0 0 0-1 1z"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4z"/></symbol>
+  <symbol id="i-archive" viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="13" rx="2"/><path d="M3 4h18v3H3zM9 11h6"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13"/></symbol>
+</svg>
 
-      <div id="configBanner" class="banner" hidden>
-        <strong>Version locale active.</strong>
-        <span>Elle fonctionne déjà sur un appareil. La synchronisation sera activée dès que Supabase sera configuré.</span>
+<div id="loading" class="loading"><div class="spinner"></div></div>
+<div id="toast" class="toast"></div>
+
+<section id="authView" class="auth-wrap hidden">
+  <div class="auth-card">
+    <div class="auth-brand"><div class="logo"><span>3W</span></div><div><div class="eyebrow">MY ENGLISH</div><h1 style="margin:0">3 Words a Day</h1></div></div>
+    <p class="muted">Connecte-toi pour retrouver ta progression, tes collections et ton profil sur tous tes appareils.</p>
+    <label class="form-label">Adresse e-mail</label><input id="authEmail" class="input" type="email" autocomplete="email">
+    <label class="form-label">Mot de passe</label><input id="authPassword" class="input" type="password" autocomplete="current-password">
+    <div class="auth-actions"><button id="loginBtn" class="primary">Se connecter</button><button id="signupBtn" class="secondary">Créer un compte</button></div>
+    <div id="authMsg" class="auth-msg"></div>
+  </div>
+</section>
+
+<div id="appShell" class="app hidden">
+  <header class="topbar">
+    <div class="brand"><div class="logo"><span>3W</span></div><div class="brandcopy"><small>MY ENGLISH</small><strong>3 Words a Day</strong></div></div>
+    <div class="top-actions"><button id="notificationTestBtn" class="icon-btn" title="Tester les notifications"><svg class="icon"><use href="#i-bell"></use></svg></button><button id="topAvatar" class="avatar">S</button></div>
+  </header>
+
+  <main>
+    <section id="home" class="screen active">
+      <div class="hero">
+        <div class="hero-main"><div><h1 id="helloName">Hi Shane</h1><p>Ready for a tiny win today?</p></div><div class="streak-badge"><div class="flame"></div><div><b id="heroStreak">0</b><div style="font-size:10px;color:#dce6f7">day streak</div></div></div></div>
+        <div id="heroQuote" class="quote">3 words today. 1,095 in a year.</div>
+        <div class="goal"><div class="goal-copy"><small>YEARLY GOAL</small><b><span id="goalMastered">0</span> words mastered</b><div class="progress" style="margin-top:10px"><i id="goalBar"></i></div></div><div class="goal-stats"><div class="metric"><b id="goalPercent">0%</b><small>completed</small></div><div class="metric"><b id="goalTarget">1,095</b><small>target</small></div></div></div>
+        <div class="cta-row"><button id="heroStartBtn" class="primary light">Commencer ma séance</button><span class="micro"><svg class="icon icon-sm"><use href="#i-spark"></use></svg><span id="heroNew">0 nouveaux</span></span><span class="micro"><svg class="icon icon-sm"><use href="#i-refresh"></use></svg><span id="heroReviews">0 révisions</span></span><span class="micro"><svg class="icon icon-sm"><use href="#i-volume"></use></svg>British voice</span></div>
       </div>
 
-      <section id="authPanel" class="panel auth" hidden>
-        <h2>Connexion</h2>
-        <p>Connecte-toi pour retrouver ta progression sur ton téléphone et ton ordinateur.</p>
-        <input id="email" type="email" placeholder="E-mail">
-        <input id="password" type="password" placeholder="Mot de passe">
-        <div class="auth-buttons">
-          <button id="signinBtn" class="primary">Se connecter</button>
-          <button id="signupBtn" class="secondary">Créer mon compte</button>
-        </div>
-        <p id="authMsg" class="auth-msg"></p>
-      </section>
-
-      <div class="stats">
-        <article><span id="newCount">0</span><small>nouveaux</small></article>
-        <article><span id="reviewCount">0</span><small>à retravailler</small></article>
-        <article><span id="learnedCount">0</span><small>maîtrisés</small></article>
+      <div class="quick-row">
+        <button class="quick" data-open-memo="new"><div class="quick-inner"><div class="quick-left"><div class="qicon new"><svg class="icon"><use href="#i-spark"></use></svg></div><div><b id="newCount">0</b><small>Nouveaux</small></div></div><svg class="icon chev"><use href="#i-chevron"></use></svg></div></button>
+        <button class="quick" data-open-memo="review"><div class="quick-inner"><div class="quick-left"><div class="qicon review"><svg class="icon"><use href="#i-refresh"></use></svg></div><div><b id="reviewCount">0</b><small>À retravailler</small></div></div><svg class="icon chev"><use href="#i-chevron"></use></svg></div></button>
+        <button class="quick" data-open-memo="mastered"><div class="quick-inner"><div class="quick-left"><div class="qicon mastered"><svg class="icon"><use href="#i-check"></use></svg></div><div><b id="masteredCount">0</b><small>Maîtrisés</small></div></div><svg class="icon chev"><use href="#i-chevron"></use></svg></div></button>
       </div>
 
-      <section class="panel today">
-        <div class="panel-top">
-          <div>
-            <p class="eyebrow">AUJOURD’HUI</p>
-            <h2>Ta séance d’anglais</h2>
-          </div>
-          <span id="modeBadge" class="badge">Mode local</span>
-        </div>
-        <p id="syncHint" class="muted"></p>
-        <button id="startBtn" class="primary big-btn">Commencer ma séance</button>
-      </section>
+      <div class="home-section soft-section"><div class="home-head"><div><div class="section-kicker">Today</div><h2>Ta séance du jour</h2></div><span id="sessionMinutes" class="pill">≈ 1 min</span></div><div class="session-strip"><div><div id="sessionSummary" style="font-weight:850;font-size:18px">0 nouveau • 0 révision</div><div class="meta-row"><span class="meta-chip"><svg class="icon icon-sm"><use href="#i-spark"></use></svg><span id="sessionSource">Daily Mix</span></span><span class="meta-chip"><svg class="icon icon-sm"><use href="#i-clock"></use></svg>petite séance rapide</span></div></div><button id="sessionStartBtn" class="primary">Lancer</button></div></div>
 
-      <section class="panel features">
-        <h3>Dans cette version</h3>
-        <div class="chips">
-          <span>3 mots/jour</span><span>🔊 Prononciation</span><span>Exemples</span>
-          <span>Révisions espacées</span><span>Mots déjà connus</span><span>Progression</span>
-        </div>
-      </section>
+      <div class="home-section"><div class="home-head"><div><div class="section-kicker">Streak</div><h3>Cette semaine</h3></div><span id="weekStreak" class="pill">0 jours</span></div><div class="plain-panel"><div id="weekCalendar" class="week"></div></div></div>
+
+      <div class="home-section"><div class="home-head"><div><div class="section-kicker">Stats</div><h3>Progression sur 7 jours</h3></div><span id="weekWords" class="pill">+0 words</span></div><div class="graph-block"><div><div id="chart" class="chart"></div><div class="chartlabels"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div></div><div class="side-stats"><div class="side-line"><b id="successRate">0%</b><small>taux de réussite</small></div><div class="side-line"><b id="categoryStat">0</b><small>catégories travaillées</small></div><div class="side-line"><b id="streakRecord">0</b><small>record personnel</small></div></div></div></div>
     </section>
 
-    <section id="study" hidden>
-      <div class="study-top">
-        <button onclick="location.reload()" class="icon-btn">←</button>
-        <span id="cardCounter"></span>
+    <section id="learn" class="screen">
+      <div class="learn-top"><button id="leaveSessionBtn" class="back"><svg class="icon" style="transform:rotate(180deg)"><use href="#i-chevron"></use></svg></button><div class="learn-progress"><i id="learnBar"></i></div><span id="learnCounter" class="pill">0 / 0</span></div>
+      <div id="studyCard" class="study-card"></div>
+    </section>
+
+    <section id="collections" class="screen">
+      <div class="section-head" style="margin-bottom:14px"><div><div class="eyebrow">ORGANISER</div><h2>Collections</h2></div><button id="newCollectionBtn" class="secondary"><svg class="icon icon-sm" style="vertical-align:-3px"><use href="#i-plus"></use></svg> Nouvelle</button></div>
+      <div id="collectionsGrid" class="collections-grid"></div>
+      <div id="archivedArea" class="card hidden"><div class="eyebrow">ARCHIVES</div><div id="archivedCollections"></div></div>
+    </section>
+
+    <section id="memo" class="screen">
+      <div class="section-head"><div><div class="eyebrow">TON DICTIONNAIRE PERSONNEL</div><h2>Mémo</h2></div><button id="addWordBtn" class="secondary"><svg class="icon icon-sm" style="vertical-align:-3px"><use href="#i-plus"></use></svg> Ajouter</button></div>
+      <div class="searchbar"><svg class="icon"><use href="#i-search"></use></svg><input id="searchInput" class="search" placeholder="Rechercher en anglais ou en français…"></div>
+      <div class="filters"><button class="active" data-filter="all">Tous</button><button data-filter="new">Nouveaux</button><button data-filter="review">À retravailler</button><button data-filter="mastered">Maîtrisés</button><button data-filter="fav">Favoris</button></div>
+      <div id="wordlist" class="wordlist"></div>
+      <button id="reviewDifficultBtn" class="primary full" style="margin-top:14px">Réviser mes mots difficiles</button>
+    </section>
+
+    <section id="profile" class="screen">
+      <div class="card"><div class="profile-card"><div id="profileAvatar" class="big-avatar">S</div><div class="profile-info"><h2 id="profileName">Shane</h2><div id="memberSince" class="muted">Member since September 2026</div><button id="editProfileBtn" class="secondary" style="margin-top:10px"><svg class="icon icon-sm" style="vertical-align:-3px"><use href="#i-edit"></use></svg> Modifier le profil</button></div></div><div class="profile-stats"><div class="profile-stat"><b id="profileMastered">0</b><small>Maîtrisés</small></div><div class="profile-stat"><b id="profileStreak">0</b><small>Série actuelle</small></div><div class="profile-stat"><b id="profileRecord">0</b><small>Record</small></div></div></div>
+      <div class="card"><div class="section-head"><div><div class="eyebrow">DAILY MIX</div><h3>Mes catégories</h3></div><button id="editCategoriesBtn" class="secondary">Modifier</button></div><div id="profileCategoryChips" class="chip-row"></div></div>
+      <div class="settings-list">
+        <button id="wordsPerDaySetting" class="setting"><div class="setting-copy" style="text-align:left"><b>Nouveaux mots / jour</b><small>3 par défaut · modifiable</small></div><div style="display:flex;align-items:center;gap:6px"><b id="dailyWordsValue">3</b><svg class="icon icon-sm"><use href="#i-chevron"></use></svg></div></button>
+        <div class="setting"><div class="setting-copy"><b>Prononciation</b><small>Accent britannique</small></div><b>UK</b></div>
+        <div class="setting"><div class="setting-copy"><b>Exercices écrits</b><small>Occasionnels</small></div><button id="writtenToggle" class="switch"></button></div>
+        <div class="setting"><div class="setting-copy"><b>Notifications</b><small id="notificationSettingText">Rappel désactivé</small></div><button id="notificationToggle" class="switch"></button></div>
+        <button id="notificationTimeSetting" class="setting hidden"><div class="setting-copy" style="text-align:left"><b>Heure du rappel</b><small>Modifiable quand tu veux</small></div><div style="display:flex;align-items:center;gap:6px"><b id="notificationTimeValue">19:00</b><svg class="icon icon-sm"><use href="#i-chevron"></use></svg></div></button>
       </div>
-      <article class="flashcard">
-        <p id="cardCategory" class="eyebrow"></p>
-        <div class="word-line">
-          <h2 id="word"></h2>
-          <button id="speakBtn" class="speak">🔊</button>
-        </div>
-
-        <button id="revealBtn" class="primary big-btn">Voir la réponse</button>
-
-        <div id="answer" hidden>
-          <h3 id="translation"></h3>
-          <div class="example-box">
-            <p id="example"></p>
-            <p id="exampleFr" class="muted"></p>
-          </div>
-        </div>
-
-        <button id="knownBtn" class="secondary wide" hidden>Je connais déjà ✅</button>
-
-        <div id="ratingRow" class="ratings" hidden>
-          <button id="againBtn">😵<small>À revoir</small></button>
-          <button id="hardBtn">🤔<small>Difficile</small></button>
-          <button id="goodBtn">😊<small>Je sais</small></button>
-          <button id="easyBtn">🚀<small>Facile</small></button>
-        </div>
-      </article>
+      <button id="logoutBtn" class="secondary" style="width:100%;margin-top:14px;color:#b32e3c">Se déconnecter</button>
     </section>
   </main>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="config.js"></script>
-  <script src="app.js"></script>
+<nav id="bottomNav" class="nav hidden"><button class="active" data-target="home"><svg class="icon"><use href="#i-home"></use></svg>Accueil</button><button data-target="learn"><svg class="icon"><use href="#i-learn"></use></svg>Apprendre</button><button data-target="collections"><svg class="icon"><use href="#i-collection"></use></svg>Collections</button><button data-target="memo"><svg class="icon"><use href="#i-search"></use></svg>Mémo</button><button data-target="profile"><svg class="icon"><use href="#i-user"></use></svg>Profil</button></nav>
+
+<!-- Profile modal -->
+<div id="profileModal" class="modal"><div class="sheet"><div class="sheet-head"><h2>Modifier le profil</h2><button class="secondary" data-close="profileModal">Fermer</button></div><label class="form-label">Prénom / pseudo</label><input id="profileNameInput" class="input"><label class="form-label">Photo de profil</label><input id="avatarFileInput" class="input" type="file" accept="image/*"><div class="info-banner"><div>Ta photo est stockée dans ton espace Supabase. Si tu préfères, tu peux garder l’avatar avec ton initiale.</div></div><div style="display:flex;gap:9px;margin-top:14px"><button id="saveProfileBtn" class="primary" style="flex:1">Enregistrer</button><button id="removeAvatarBtn" class="secondary">Utiliser mes initiales</button></div></div></div>
+
+<!-- Categories modal -->
+<div id="categoriesModal" class="modal"><div class="sheet"><div class="sheet-head"><h2>Catégories du Daily Mix</h2><button class="secondary" data-close="categoriesModal">Fermer</button></div><p class="muted">Tu peux en sélectionner autant que tu veux.</p><div id="categoryGroups" class="category-groups"></div><button id="saveCategoriesBtn" class="primary full" style="margin-top:16px">Enregistrer mes catégories</button></div></div>
+
+<!-- Collection modal -->
+<div id="collectionModal" class="modal"><div class="sheet"><div class="sheet-head"><h2 id="collectionModalTitle">Nouvelle collection</h2><button class="secondary" data-close="collectionModal">Fermer</button></div><input id="editingCollectionId" type="hidden"><label class="form-label">Nom de la collection</label><input id="collectionName" class="input" placeholder="Ex. Contrôle marketing"><div class="form-grid"><div><label class="form-label">Mode</label><select id="collectionMode"><option value="complement">Complément</option><option value="priority">Priorité</option></select></div><div><label class="form-label">Rythme</label><select id="collectionLearningMode"><option value="automatic">Automatique</option><option value="personal">Planning personnel</option><option value="all_now">Tout apprendre maintenant</option></select></div></div><div class="form-grid"><div><label class="form-label">Révisions</label><select id="collectionReviewMode"><option value="smart">Révision intelligente</option><option value="all_daily">Toute la collection chaque jour</option></select></div><div><label class="form-label">Date objectif</label><input id="collectionGoalDate" class="input" type="date"></div></div><label class="form-label">Nombre de nouveaux mots / jour (pour le mode personnel)</label><input id="collectionDailyTarget" class="input" type="number" min="1" max="100" placeholder="Ex. 5"><label class="form-label">Ajouter des mots — un par ligne</label><textarea id="collectionWordsText" class="input" rows="7" placeholder="reliable = fiable&#10;profit = bénéfice&#10;deadline = date limite"></textarea><div class="info-banner"><div>Si le mot existe déjà dans le catalogue, l’application le réutilise. Sinon, il devient un mot personnel. Pour cette version, écris les nouveaux mots sous la forme <b>anglais = français</b>.</div></div><div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:14px"><button id="saveCollectionBtn" class="primary" style="flex:1">Enregistrer</button><button id="archiveCollectionBtn" class="secondary hidden"><svg class="icon icon-sm" style="vertical-align:-3px"><use href="#i-archive"></use></svg> Archiver</button><button id="deleteCollectionBtn" class="danger hidden"><svg class="icon icon-sm" style="vertical-align:-3px"><use href="#i-trash"></use></svg> Supprimer</button></div></div></div>
+
+<!-- Add one word -->
+<div id="wordModal" class="modal"><div class="sheet"><div class="sheet-head"><h2>Ajouter un mot</h2><button class="secondary" data-close="wordModal">Fermer</button></div><label class="form-label">Anglais</label><input id="wordEn" class="input"><label class="form-label">Français</label><input id="wordFr" class="input"><label class="form-label">Catégorie</label><select id="wordCategory" class="input"></select><label class="form-label">Phrase d’exemple (facultatif)</label><input id="wordExample" class="input" placeholder="I need a reliable supplier."><label class="form-label">Traduction de la phrase (facultatif)</label><input id="wordExampleFr" class="input"><div class="info-banner"><div>Le mot sera ajouté à ton Mémo comme <b>nouveau mot à apprendre</b>. La complétion automatique par IA sera ajoutée dans une étape séparée pour rester gratuite et fiable.</div></div><button id="saveWordBtn" class="primary full" style="margin-top:14px">Ajouter à mon Mémo</button></div></div>
+
+<!-- Generic confirm -->
+<div id="confirmModal" class="modal center"><div class="dialog"><h3 id="confirmTitle">Confirmer ?</h3><p id="confirmText" class="muted"></p><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px"><button id="confirmCancel" class="secondary">Annuler</button><button id="confirmOk" class="danger">Confirmer</button></div></div></div>
+
+<!-- Small setting modal -->
+<div id="settingModal" class="modal center"><div class="dialog"><h3 id="settingTitle">Réglage</h3><div id="settingContent" style="margin-top:14px"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px"><button class="secondary" data-close="settingModal">Annuler</button><button id="settingSave" class="primary">Enregistrer</button></div></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="catalog.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
