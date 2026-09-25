@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0a1b33">
 <title>3 Words a Day</title>
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=5.0">
 </head>
 <body>
 <svg aria-hidden="true" width="0" height="0" style="position:absolute">
@@ -41,11 +41,59 @@
 <section id="authView" class="auth-wrap hidden">
   <div class="auth-card">
     <div class="auth-brand"><div class="logo"><span>3W</span></div><div><div class="eyebrow">MY ENGLISH</div><h1 style="margin:0">3 Words a Day</h1></div></div>
-    <p class="muted">Connecte-toi pour retrouver ta progression, tes collections et ton profil sur tous tes appareils.</p>
-    <label class="form-label">Adresse e-mail</label><input id="authEmail" class="input" type="email" autocomplete="email">
-    <label class="form-label">Mot de passe</label><input id="authPassword" class="input" type="password" autocomplete="current-password">
-    <div class="auth-actions"><button id="loginBtn" class="primary">Se connecter</button><button id="signupBtn" class="secondary">Créer un compte</button></div>
+
+    <div id="authLanding">
+      <p class="muted">Retrouve ta progression, tes collections et ton profil sur tous tes appareils.</p>
+      <div class="auth-choice"><button id="showLoginBtn" class="primary full">Se connecter</button><button id="showSignupBtn" class="secondary full">Créer un compte</button></div>
+    </div>
+
+    <div id="loginForm" class="hidden">
+      <button class="text-back" data-auth-back>← Retour</button><h2>Se connecter</h2>
+      <label class="form-label">Adresse e-mail</label><input id="loginEmail" class="input" type="email" autocomplete="email">
+      <label class="form-label">Mot de passe</label><input id="loginPassword" class="input" type="password" autocomplete="current-password">
+      <button id="loginBtn" class="primary full" style="margin-top:14px">Se connecter</button>
+      <button id="forgotPasswordBtn" class="link-btn">Mot de passe oublié ?</button>
+    </div>
+
+    <div id="signupForm" class="hidden">
+      <button class="text-back" data-auth-back>← Retour</button><h2>Créer un compte</h2>
+      <label class="form-label">Prénom / pseudo</label><input id="signupName" class="input" autocomplete="nickname" placeholder="Ex. Shane">
+      <label class="form-label">Adresse e-mail</label><input id="signupEmail" class="input" type="email" autocomplete="email">
+      <label class="form-label">Mot de passe</label><input id="signupPassword" class="input" type="password" autocomplete="new-password">
+      <label class="form-label">Confirmer le mot de passe</label><input id="signupPassword2" class="input" type="password" autocomplete="new-password">
+      <button id="signupBtn" class="primary full" style="margin-top:14px">Créer mon compte</button>
+    </div>
+
+    <div id="confirmEmailView" class="hidden auth-success">
+      <div class="success-mark">✓</div><h2>Vérifie ta boîte mail</h2>
+      <p class="muted">Nous t’avons envoyé un lien pour confirmer ton adresse. Une fois validée, reviens ici : l’application te guidera pour ta première séance.</p>
+      <button id="confirmBackLogin" class="secondary full">J’ai confirmé mon adresse</button>
+    </div>
+
+    <div id="passwordResetRequest" class="hidden">
+      <button class="text-back" data-auth-back-login>← Retour</button><h2>Mot de passe oublié</h2>
+      <p class="muted">Entre ton adresse e-mail et nous t’enverrons un lien de réinitialisation.</p>
+      <label class="form-label">Adresse e-mail</label><input id="resetEmail" class="input" type="email" autocomplete="email">
+      <button id="sendResetBtn" class="primary full" style="margin-top:14px">Envoyer le lien</button>
+    </div>
+
+    <div id="passwordResetForm" class="hidden">
+      <div class="success-mark">🔐</div><h2>Choisir un nouveau mot de passe</h2>
+      <label class="form-label">Nouveau mot de passe</label><input id="newPassword" class="input" type="password" autocomplete="new-password">
+      <label class="form-label">Confirmer le mot de passe</label><input id="newPassword2" class="input" type="password" autocomplete="new-password">
+      <button id="saveNewPasswordBtn" class="primary full" style="margin-top:14px">Enregistrer</button>
+    </div>
+
     <div id="authMsg" class="auth-msg"></div>
+  </div>
+</section>
+
+<section id="onboardingView" class="auth-wrap hidden">
+  <div class="auth-card onboarding-card">
+    <div class="auth-brand"><div class="logo"><span>3W</span></div><div><div class="eyebrow">BIENVENUE</div><h1 style="margin:0">Ton Daily Mix</h1></div></div>
+    <div class="onboard-progress"><i id="onboardBar"></i></div>
+    <div id="onboardContent"></div>
+    <div class="onboard-actions"><button id="onboardBackBtn" class="secondary hidden">Retour</button><button id="onboardNextBtn" class="primary">Continuer</button></div>
   </div>
 </section>
 
@@ -70,7 +118,7 @@
         <button class="quick" data-open-memo="mastered"><div class="quick-inner"><div class="quick-left"><div class="qicon mastered"><svg class="icon"><use href="#i-check"></use></svg></div><div><b id="masteredCount">0</b><small>Maîtrisés</small></div></div><svg class="icon chev"><use href="#i-chevron"></use></svg></div></button>
       </div>
 
-      <div class="home-section soft-section"><div class="home-head"><div><div class="section-kicker">Today</div><h2>Ta séance du jour</h2></div><span id="sessionMinutes" class="pill">≈ 1 min</span></div><div class="session-strip"><div><div id="sessionSummary" style="font-weight:850;font-size:18px">0 nouveau • 0 révision</div><div class="meta-row"><span class="meta-chip"><svg class="icon icon-sm"><use href="#i-spark"></use></svg><span id="sessionSource">Daily Mix</span></span><span class="meta-chip"><svg class="icon icon-sm"><use href="#i-clock"></use></svg>petite séance rapide</span></div></div><button id="sessionStartBtn" class="primary">Lancer</button></div></div>
+      <div class="home-section soft-section"><div class="home-head"><div><div class="section-kicker">Today</div><h2>Ta séance du jour</h2><div id="bonusToday" class="bonus-today hidden"></div></div><span id="sessionMinutes" class="pill">≈ 1 min</span></div><div class="session-strip"><div><div id="sessionSummary" style="font-weight:850;font-size:18px">0 nouveau • 0 révision</div><div class="meta-row"><span class="meta-chip"><svg class="icon icon-sm"><use href="#i-spark"></use></svg><span id="sessionSource">Daily Mix</span></span><span class="meta-chip"><svg class="icon icon-sm"><use href="#i-clock"></use></svg>petite séance rapide</span></div></div><button id="sessionStartBtn" class="primary">Lancer</button></div></div>
 
       <div class="home-section"><div class="home-head"><div><div class="section-kicker">Streak</div><h3>Cette semaine</h3></div><span id="weekStreak" class="pill">0 jours</span></div><div class="plain-panel"><div id="weekCalendar" class="week"></div></div></div>
 
@@ -89,7 +137,7 @@
     </section>
 
     <section id="memo" class="screen">
-      <div class="section-head"><div><div class="eyebrow">TON DICTIONNAIRE PERSONNEL</div><h2>Mémo</h2></div><button id="addWordBtn" class="secondary"><svg class="icon icon-sm" style="vertical-align:-3px"><use href="#i-plus"></use></svg> Ajouter</button></div>
+      <div class="section-head"><div><div class="eyebrow">TON DICTIONNAIRE PERSONNEL</div><h2>Mémo</h2></div><div class="head-actions"><button id="translatorBtn" class="secondary">Traduire</button><button id="addWordBtn" class="secondary"><svg class="icon icon-sm" style="vertical-align:-3px"><use href="#i-plus"></use></svg> Ajouter</button></div></div>
       <div class="searchbar"><svg class="icon"><use href="#i-search"></use></svg><input id="searchInput" class="search" placeholder="Rechercher en anglais ou en français…"></div>
       <div class="filters"><button class="active" data-filter="all">Tous</button><button data-filter="new">Nouveaux</button><button data-filter="review">À retravailler</button><button data-filter="mastered">Maîtrisés</button><button data-filter="fav">Favoris</button></div>
       <div id="wordlist" class="wordlist"></div>
@@ -100,7 +148,7 @@
       <div class="card"><div class="profile-card"><div id="profileAvatar" class="big-avatar">S</div><div class="profile-info"><h2 id="profileName">Shane</h2><div id="memberSince" class="muted">Member since September 2026</div><button id="editProfileBtn" class="secondary" style="margin-top:10px"><svg class="icon icon-sm" style="vertical-align:-3px"><use href="#i-edit"></use></svg> Modifier le profil</button></div></div><div class="profile-stats"><div class="profile-stat"><b id="profileMastered">0</b><small>Maîtrisés</small></div><div class="profile-stat"><b id="profileStreak">0</b><small>Série actuelle</small></div><div class="profile-stat"><b id="profileRecord">0</b><small>Record</small></div></div></div>
       <div class="card"><div class="section-head"><div><div class="eyebrow">DAILY MIX</div><h3>Mes catégories</h3></div><button id="editCategoriesBtn" class="secondary">Modifier</button></div><div id="profileCategoryChips" class="chip-row"></div></div>
       <div class="settings-list">
-        <button id="wordsPerDaySetting" class="setting"><div class="setting-copy" style="text-align:left"><b>Nouveaux mots / jour</b><small>3 par défaut · modifiable</small></div><div style="display:flex;align-items:center;gap:6px"><b id="dailyWordsValue">3</b><svg class="icon icon-sm"><use href="#i-chevron"></use></svg></div></button>
+        <button id="wordsPerDaySetting" class="setting"><div class="setting-copy" style="text-align:left"><b>Nouveaux mots / jour</b><small>3 par défaut · modifiable</small></div><div style="display:flex;align-items:center;gap:6px"><b id="dailyWordsValue">3</b><svg class="icon icon-sm"><use href="#i-chevron"></use></svg></div></button><button id="dailyMinutesSetting" class="setting"><div class="setting-copy" style="text-align:left"><b>Objectif quotidien</b><small>Temps que tu veux consacrer à l’anglais</small></div><div style="display:flex;align-items:center;gap:6px"><b id="dailyMinutesValue">5 min</b><svg class="icon icon-sm"><use href="#i-chevron"></use></svg></div></button>
         <div class="setting"><div class="setting-copy"><b>Prononciation</b><small>Accent britannique</small></div><b>UK</b></div>
         <div class="setting"><div class="setting-copy"><b>Exercices écrits</b><small>Occasionnels</small></div><button id="writtenToggle" class="switch"></button></div>
         <div class="setting"><div class="setting-copy"><b>Notifications</b><small id="notificationSettingText">Rappel désactivé</small></div><button id="notificationToggle" class="switch"></button></div>
@@ -114,16 +162,32 @@
 <nav id="bottomNav" class="nav hidden"><button class="active" data-target="home"><svg class="icon"><use href="#i-home"></use></svg>Accueil</button><button data-target="learn"><svg class="icon"><use href="#i-learn"></use></svg>Apprendre</button><button data-target="collections"><svg class="icon"><use href="#i-collection"></use></svg>Collections</button><button data-target="memo"><svg class="icon"><use href="#i-search"></use></svg>Mémo</button><button data-target="profile"><svg class="icon"><use href="#i-user"></use></svg>Profil</button></nav>
 
 <!-- Profile modal -->
-<div id="profileModal" class="modal"><div class="sheet"><div class="sheet-head"><h2>Modifier le profil</h2><button class="secondary" data-close="profileModal">Fermer</button></div><label class="form-label">Prénom / pseudo</label><input id="profileNameInput" class="input"><label class="form-label">Photo de profil</label><input id="avatarFileInput" class="input" type="file" accept="image/*"><div class="info-banner"><div>Ta photo est stockée dans ton espace Supabase. Si tu préfères, tu peux garder l’avatar avec ton initiale.</div></div><div style="display:flex;gap:9px;margin-top:14px"><button id="saveProfileBtn" class="primary" style="flex:1">Enregistrer</button><button id="removeAvatarBtn" class="secondary">Utiliser mes initiales</button></div></div></div>
+<div id="profileModal" class="modal"><div class="sheet"><div class="sheet-head"><h2>Modifier le profil</h2><button class="secondary" data-close="profileModal">Fermer</button></div><label class="form-label">Prénom / pseudo</label><input id="profileNameInput" class="input"><label class="form-label">Photo de profil</label><input id="avatarFileInput" class="input" type="file" accept="image/*"><div id="avatarCropArea" class="crop-area hidden"><canvas id="avatarCropCanvas" width="512" height="512"></canvas><div class="crop-controls"><label>Zoom <input id="avatarZoom" type="range" min="1" max="3" step="0.02" value="1"></label><button id="rotateAvatarBtn" class="secondary" type="button">↻ Tourner</button></div><small class="muted">Fais glisser la photo pour la repositionner dans le cercle.</small></div><div class="info-banner"><div>Ta photo est stockée dans ton espace Supabase. Tu peux la recadrer avant de l’enregistrer.</div></div><div style="display:flex;gap:9px;margin-top:14px"><button id="saveProfileBtn" class="primary" style="flex:1">Enregistrer</button><button id="removeAvatarBtn" class="secondary">Utiliser mes initiales</button></div></div></div>
 
 <!-- Categories modal -->
-<div id="categoriesModal" class="modal"><div class="sheet"><div class="sheet-head"><h2>Catégories du Daily Mix</h2><button class="secondary" data-close="categoriesModal">Fermer</button></div><p class="muted">Tu peux en sélectionner autant que tu veux.</p><div id="categoryGroups" class="category-groups"></div><button id="saveCategoriesBtn" class="primary full" style="margin-top:16px">Enregistrer mes catégories</button></div></div>
+<div id="categoriesModal" class="modal"><div class="sheet"><div class="sheet-head"><h2>Catégories du Daily Mix</h2><button class="secondary" data-close="categoriesModal">Fermer</button></div><p class="muted">Tu peux en sélectionner autant que tu veux.</p><div id="categoryGroups" class="category-groups"></div><div class="custom-theme-cta"><div><b>Un sujet n’existe pas ?</b><small>Crée ton propre thème : aviation, mécanique, photographie…</small></div><button id="createThemeBtn" class="secondary">✨ Créer mon thème</button></div><button id="saveCategoriesBtn" class="primary full" style="margin-top:16px">Enregistrer mes catégories</button></div></div>
 
 <!-- Collection modal -->
-<div id="collectionModal" class="modal"><div class="sheet"><div class="sheet-head"><h2 id="collectionModalTitle">Nouvelle collection</h2><button class="secondary" data-close="collectionModal">Fermer</button></div><input id="editingCollectionId" type="hidden"><label class="form-label">Nom de la collection</label><input id="collectionName" class="input" placeholder="Ex. Contrôle marketing"><div class="form-grid"><div><label class="form-label">Mode</label><select id="collectionMode"><option value="complement">Complément</option><option value="priority">Priorité</option></select></div><div><label class="form-label">Rythme</label><select id="collectionLearningMode"><option value="automatic">Automatique</option><option value="personal">Planning personnel</option><option value="all_now">Tout apprendre maintenant</option></select></div></div><div class="form-grid"><div><label class="form-label">Révisions</label><select id="collectionReviewMode"><option value="smart">Révision intelligente</option><option value="all_daily">Toute la collection chaque jour</option></select></div><div><label class="form-label">Date objectif</label><input id="collectionGoalDate" class="input" type="date"></div></div><label class="form-label">Nombre de nouveaux mots / jour (pour le mode personnel)</label><input id="collectionDailyTarget" class="input" type="number" min="1" max="100" placeholder="Ex. 5"><label class="form-label">Ajouter des mots — un par ligne</label><textarea id="collectionWordsText" class="input" rows="7" placeholder="reliable = fiable&#10;profit = bénéfice&#10;deadline = date limite"></textarea><div class="info-banner"><div>Si le mot existe déjà dans le catalogue, l’application le réutilise. Sinon, il devient un mot personnel. Pour cette version, écris les nouveaux mots sous la forme <b>anglais = français</b>.</div></div><div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:14px"><button id="saveCollectionBtn" class="primary" style="flex:1">Enregistrer</button><button id="archiveCollectionBtn" class="secondary hidden"><svg class="icon icon-sm" style="vertical-align:-3px"><use href="#i-archive"></use></svg> Archiver</button><button id="deleteCollectionBtn" class="danger hidden"><svg class="icon icon-sm" style="vertical-align:-3px"><use href="#i-trash"></use></svg> Supprimer</button></div></div></div>
+<div id="collectionModal" class="modal"><div class="sheet"><div class="sheet-head"><h2 id="collectionModalTitle">Nouvelle collection</h2><button class="secondary" data-close="collectionModal">Fermer</button></div><input id="editingCollectionId" type="hidden"><label class="form-label">Nom de la collection</label><input id="collectionName" class="input" placeholder="Ex. Contrôle marketing"><div class="form-grid"><div><label class="form-label">Mode</label><select id="collectionMode"><option value="complement">Complément</option><option value="priority">Priorité</option></select></div><div><label class="form-label">Rythme</label><select id="collectionLearningMode"><option value="automatic">Automatique</option><option value="personal">Planning personnel</option><option value="all_now">Tout apprendre maintenant</option></select></div></div><div class="form-grid"><div><label class="form-label">Révisions</label><select id="collectionReviewMode"><option value="smart">Révision intelligente</option><option value="all_daily">Toute la collection chaque jour</option></select></div><div><label class="form-label">Date objectif</label><input id="collectionGoalDate" class="input" type="date"></div></div><label class="form-label">Nombre de nouveaux mots / jour (pour le mode personnel)</label><input id="collectionDailyTarget" class="input" type="number" min="1" max="100" placeholder="Ex. 5"><label class="form-label">Ajouter des mots — un par ligne</label><textarea id="collectionWordsText" class="input" rows="7" placeholder="reliable = fiable&#10;profit = bénéfice&#10;deadline = date limite"></textarea><div class="photo-import-row"><div><b>Ou importe ta liste en photo</b><small>L’application reconnaît les mots puis te laisse les vérifier.</small></div><label class="secondary file-button">📷 Prendre / importer une photo<input id="collectionPhotoInput" type="file" accept="image/*" capture="environment"></label></div><div class="info-banner"><div>Les nouveaux mots sont complétés automatiquement avec traduction et exemple avant d’être enregistrés.</div></div><div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:14px"><button id="saveCollectionBtn" class="primary" style="flex:1">Enregistrer</button><button id="archiveCollectionBtn" class="secondary hidden"><svg class="icon icon-sm" style="vertical-align:-3px"><use href="#i-archive"></use></svg> Archiver</button><button id="deleteCollectionBtn" class="danger hidden"><svg class="icon icon-sm" style="vertical-align:-3px"><use href="#i-trash"></use></svg> Supprimer</button></div></div></div>
 
 <!-- Add one word -->
-<div id="wordModal" class="modal"><div class="sheet"><div class="sheet-head"><h2>Ajouter un mot</h2><button class="secondary" data-close="wordModal">Fermer</button></div><label class="form-label">Anglais</label><input id="wordEn" class="input"><label class="form-label">Français</label><input id="wordFr" class="input"><label class="form-label">Catégorie</label><select id="wordCategory" class="input"></select><label class="form-label">Phrase d’exemple (facultatif)</label><input id="wordExample" class="input" placeholder="I need a reliable supplier."><label class="form-label">Traduction de la phrase (facultatif)</label><input id="wordExampleFr" class="input"><div class="info-banner"><div>Le mot sera ajouté à ton Mémo comme <b>nouveau mot à apprendre</b>. La complétion automatique par IA sera ajoutée dans une étape séparée pour rester gratuite et fiable.</div></div><button id="saveWordBtn" class="primary full" style="margin-top:14px">Ajouter à mon Mémo</button></div></div>
+<div id="wordModal" class="modal"><div class="sheet"><div class="sheet-head"><h2>Ajouter un mot</h2><button class="secondary" data-close="wordModal">Fermer</button></div><p class="muted">Écris le mot en anglais <b>ou</b> en français : l’application peut compléter le reste.</p><label class="form-label">Anglais</label><input id="wordEn" class="input"><label class="form-label">Français</label><input id="wordFr" class="input"><button id="smartCompleteWordBtn" class="secondary full" style="margin:10px 0">✨ Compléter automatiquement</button><label class="form-label">Catégorie</label><select id="wordCategory" class="input"></select><label class="form-label">Phrase d’exemple</label><input id="wordExample" class="input" placeholder="I need a reliable supplier."><label class="form-label">Traduction de la phrase</label><input id="wordExampleFr" class="input"><div id="wordSensePreview" class="sense-preview hidden"></div><div class="info-banner"><div>Chaque mot enregistré garde au moins un exemple bilingue. Les mots à plusieurs sens peuvent conserver plusieurs exemples.</div></div><button id="saveWordBtn" class="primary full" style="margin-top:14px">Ajouter à mon Mémo</button></div></div>
+
+
+<!-- Translator -->
+<div id="translatorModal" class="modal"><div class="sheet"><div class="sheet-head"><h2>Mini traducteur</h2><button class="secondary" data-close="translatorModal">Fermer</button></div><p class="muted">Un mot, une expression ou une phrase courte — français ↔ anglais.</p><textarea id="translatorInput" class="input" rows="3" placeholder="Ex. train d’atterrissage"></textarea><button id="translateBtn" class="primary full" style="margin-top:10px">Traduire</button><div id="translatorResult" class="translator-result hidden"></div></div></div>
+
+<!-- Word detail -->
+<div id="wordDetailModal" class="modal"><div class="sheet"><div class="sheet-head"><h2>Détail du mot</h2><button class="secondary" data-close="wordDetailModal">Fermer</button></div><div id="wordDetailContent"></div></div></div>
+
+<!-- Custom theme -->
+<div id="themeModal" class="modal"><div class="sheet"><div class="sheet-head"><h2>Créer mon propre thème</h2><button class="secondary" data-close="themeModal">Fermer</button></div><label class="form-label">Quel sujet veux-tu apprendre ?</label><input id="themeTopic" class="input" placeholder="Ex. Aviation"><div class="form-grid"><div><label class="form-label">Niveau</label><select id="themeLevel" class="input"><option value="beginner">Débutant</option><option value="intermediate">Intermédiaire</option><option value="advanced">Avancé</option></select></div><div><label class="form-label">Nombre de mots</label><select id="themeCount" class="input"><option value="20">20</option><option value="50" selected>50</option><option value="100">100</option><option value="other">Autre</option></select><input id="themeCountOther" class="input hidden" type="number" min="5" max="100" value="30" style="margin-top:8px"></div></div><button id="generateThemeBtn" class="primary full" style="margin-top:14px">✨ Générer le vocabulaire</button><div id="themePreview" class="theme-preview hidden"></div></div></div>
+
+<!-- Photo vocabulary review -->
+<div id="photoReviewModal" class="modal"><div class="sheet"><div class="sheet-head"><h2>Vérifier les mots détectés</h2><button class="secondary" data-close="photoReviewModal">Fermer</button></div><p class="muted">Corrige ou décoche un mot avant de l’ajouter à ta collection.</p><div id="photoReviewList" class="review-list"></div><button id="acceptPhotoWordsBtn" class="primary full" style="margin-top:14px">Ajouter les mots sélectionnés</button></div></div>
+
+<!-- Bonus words -->
+<div id="bonusModal" class="modal center"><div class="dialog"><h3>Apprendre encore quelques mots ?</h3><p class="muted">Ta journée est déjà validée. Cette séance est un bonus et ne change pas ton objectif habituel.</p><div id="bonusChoices" class="number-choices"></div><div id="bonusOtherWrap" class="hidden"><input id="bonusOther" class="input" type="number" min="1" max="30" value="3"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px"><button class="secondary" data-close="bonusModal">Annuler</button><button id="startBonusBtn" class="primary">Commencer</button></div></div></div>
 
 <!-- Generic confirm -->
 <div id="confirmModal" class="modal center"><div class="dialog"><h3 id="confirmTitle">Confirmer ?</h3><p id="confirmText" class="muted"></p><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px"><button id="confirmCancel" class="secondary">Annuler</button><button id="confirmOk" class="danger">Confirmer</button></div></div></div>
@@ -133,7 +197,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js"></script>
-<script src="catalog.js"></script>
-<script src="app.js"></script>
+<script src="catalog.js?v=5.0"></script>
+<script src="app.js?v=5.0"></script>
 </body>
 </html>
